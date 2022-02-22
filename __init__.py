@@ -7,11 +7,10 @@ import time
 t = time.localtime()
 current_time = int(time.strftime("%H", t))
 
-device_name = data={"name": device["name"]}
-
 class FinishedBooting(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
+        self.api = DeviceApi()
 
     def initialize(self):
         self.add_event("mycroft.skills.initialized", self.handle_booting_finished)
@@ -19,16 +18,20 @@ class FinishedBooting(MycroftSkill):
 
     @intent_file_handler('booting.finished.intent')
     def handle_booting_finished(self, message):
+        device = DeviceApi().get()
         if current_time >=12 and current_time < 18:
-            self.speak_dialog('afternoon.finished', 'booting.finished', data={"name": device_name["name"]})
+            self.speak_dialog('afternoon.finished')
+            self.speak_dialog('booting.finished', data={"name": device["name"]})
             LOG.debug('finished booting')
 
         elif current_time >= 18:
-            self.speak_dialog('evening.finished', 'booting.finished', data={"name": device_name["name"]}) 
+            self.speak_dialog('evening.finished')
+            self.speak_dialog('booting.finished', data={"name": device["name"]}) 
             LOG.debug('finished booting')
 
         else:
-            self.speak_dialog('morning.finished', 'booting.finished', data={"name": device_name["name"]})
+            self.speak_dialog('morning.finished')
+            self.speak_dialog('booting.finished', data={"name": device["name"]})
             LOG.debug('finished booting')
 
 def create_skill():
