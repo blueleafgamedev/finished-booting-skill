@@ -2,7 +2,7 @@
 Lets user know the system has finished booting and is ready for use.
 
 ## About
-This is a modified version of the finished booting skill found in the mycroft ai skills store. i wanted to create something that would say good morning, good afternoon, and good evening. i am also planning on adding some customization to allow the device to state its name.
+This is a modified version of the finished booting skill found in the mycroft ai skills store. I wanted to create something that would say good morning, good afternoon, and good evening. The device will also state its name for some of the finished booting statements.
 
 ## Examples
 
