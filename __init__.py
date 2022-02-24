@@ -34,6 +34,7 @@ class FinishedBooting(MycroftSkill):
             self.speak_dialog('booting.finished', data={"name": device["name"]})
             LOG.debug('finished booting')
 
+
 def create_skill():
     return FinishedBooting()
 
